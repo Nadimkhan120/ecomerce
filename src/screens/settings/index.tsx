@@ -2,8 +2,8 @@ import { Env } from '@env';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 
-import { useAuth } from '@/core';
-import { translate } from '@/core';
+import { translate } from '@/i18n';
+import { useAuth } from '@/store/auth';
 import { ScrollView, Text, View } from '@/ui';
 import { Github, Rate, Share, Support, Website } from '@/ui/icons';
 import colors from '@/ui/theme/colors';

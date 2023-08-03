@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { TxKeyPath } from '@/core';
+import type { TxKeyPath } from '@/i18n';
 import { Text, View } from '@/ui';
 
 type Props = {

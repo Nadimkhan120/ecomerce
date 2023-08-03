@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { createSelectors } from '../utils';
+import { createSelectors } from '../../core/utils';
 import type { TokenType } from './utils';
 import { getToken, removeToken, setToken } from './utils';
 

@@ -1,13 +1,14 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
-import { useAuth } from '@/core';
-import { useIsFirstTime } from '@/core/hooks';
+
+import { useIsFirstTime } from '@/hooks';
 import { Onboarding } from '@/screens';
+import { useAuth } from '@/store/auth';
+
+import { AppNavigator } from './app-navigator';
 import { AuthNavigator } from './auth-navigator';
 import { NavigationContainer } from './navigation-container';
-import { TabNavigator } from './tab-navigator';
-import { AppNavigator } from './app-navigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +41,7 @@ export const Root = () => {
           {status === 'signOut' ? (
             <Stack.Screen name="Auth" component={AuthNavigator} />
           ) : (
-             <Stack.Screen name="App" component={AppNavigator} />
+            <Stack.Screen name="App" component={AppNavigator} />
           )}
         </Stack.Group>
       )}

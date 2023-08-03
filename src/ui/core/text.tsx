@@ -4,8 +4,8 @@ import React from 'react';
 import type { TextProps } from 'react-native';
 import { StyleSheet, Text as NNText } from 'react-native';
 
-import type { TxKeyPath } from '@/core';
-import { isRTL, translate } from '@/core';
+import type { TxKeyPath } from '@/i18n';
+import { isRTL, translate } from '@/i18n';
 
 const SText = styled(NNText);
 

@@ -1,9 +1,9 @@
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 
-import { useSelectedLanguage } from '@/core';
-import { translate } from '@/core';
-import type { Language } from '@/core/i18n/resources';
+import { useSelectedLanguage } from '@/i18n';
+import { translate } from '@/i18n';
+import type { Language } from '@/i18n/resources';
 import type { Option } from '@/ui';
 import { Options } from '@/ui';
 

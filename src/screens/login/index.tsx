@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAuth } from '@/core';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
+import { useAuth } from '@/store/auth';
 
 import type { LoginFormProps } from './login-form';
 import { LoginForm } from './login-form';

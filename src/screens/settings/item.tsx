@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { TxKeyPath } from '@/core';
+import type { TxKeyPath } from '@/i18n';
 import { ArrowRight, Text, TouchableOpacity, View } from '@/ui';
 
 type ItemProps = {

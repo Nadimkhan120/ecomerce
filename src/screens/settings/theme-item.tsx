@@ -1,8 +1,9 @@
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import React from 'react';
 
-import type { ColorSchemeType } from '@/core';
-import { translate, useSelectedTheme } from '@/core';
+import type { ColorSchemeType } from '@/hooks';
+import { useSelectedTheme } from '@/hooks';
+import { translate } from '@/i18n';
 import type { Option } from '@/ui';
 import { Options } from '@/ui';
 

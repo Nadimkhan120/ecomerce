@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useIsFirstTime } from '@/core/hooks';
+import { useIsFirstTime } from '@/hooks';
 import { Button, SafeAreaView, Text, View } from '@/ui';
 
 import { Cover } from './cover';
@@ -13,7 +13,7 @@ export const Onboarding = () => {
       </View>
       <View className="justify-end ">
         <Text className="my-3 text-center text-5xl font-bold">
-          Obytes Starter
+          Ecomerce demo app
         </Text>
         <Text className="mb-2 text-center text-lg text-gray-600">
           The right way to build your mobile app

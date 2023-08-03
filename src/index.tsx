@@ -8,8 +8,9 @@ import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { APIProvider } from '@/api';
-import { hydrateAuth, loadSelectedTheme } from '@/core';
+import { loadSelectedTheme } from '@/hooks';
 import { RootNavigator } from '@/navigation';
+import { hydrateAuth } from '@/store/auth';
 
 hydrateAuth();
 loadSelectedTheme();

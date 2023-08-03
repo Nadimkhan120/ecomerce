@@ -4,7 +4,7 @@ import type { TextInput, TextInputProps } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
 
-import { isRTL } from '@/core';
+import { isRTL } from '@/i18n';
 
 import colors from '../../theme/colors';
 import { Text } from '../text';
