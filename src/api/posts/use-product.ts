@@ -2,13 +2,13 @@ import type { AxiosError } from 'axios';
 import { createQuery } from 'react-query-kit';
 
 import { client } from '../common';
-import type { Post } from './types';
+import type { Product } from './types';
 
 type Variables = { id: number };
-type Response = Post;
+type Response = Product;
 
-export const usePost = createQuery<Response, Variables, AxiosError>(
-  'posts',
+export const useProduct = createQuery<Response, Variables, AxiosError>(
+  'products',
   ({ queryKey: [primaryKey, variables] }) => {
     return client
       .get(`${primaryKey}/${variables.id}`)

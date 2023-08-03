@@ -2,18 +2,20 @@ import { useNavigation } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
 import React from 'react';
 
-import type { Post } from '@/api';
-import { usePosts } from '@/api';
+import type { Product } from '@/api';
+import { useProducts } from '@/api';
 import { EmptyList, Text, View } from '@/ui';
 
 import { Card } from './card';
 
 export const Products = () => {
-  const { data, isLoading, isError } = usePosts();
+  const { data, isLoading, isError } = useProducts();
   const { navigate } = useNavigation();
 
+  console.log('data', JSON.stringify(data, null, 2));
+
   const renderItem = React.useCallback(
-    ({ item }: { item: Post }) => (
+    ({ item }: { item: Product }) => (
       <Card {...item} onPress={() => navigate('Details', { id: item.id })} />
     ),
     [navigate]

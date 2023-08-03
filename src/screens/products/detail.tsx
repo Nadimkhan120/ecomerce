@@ -1,13 +1,13 @@
 import { useRoute } from '@react-navigation/native';
 import * as React from 'react';
 
-import { usePost } from '@/api';
+import { useProduct } from '@/api';
 import type { RouteProp } from '@/navigation/types';
-import { ActivityIndicator, Text, View } from '@/ui';
+import { ActivityIndicator, Image, Text, View } from '@/ui';
 
 export const Details = () => {
   const { params } = useRoute<RouteProp<'Details'>>();
-  const { data, isLoading, isError } = usePost({
+  const { data, isLoading, isError } = useProduct({
     variables: { id: params.id },
   });
 
@@ -29,9 +29,22 @@ export const Details = () => {
   }
 
   return (
-    <View className="flex-1 ">
-      <Text variant="h2">{data.title}</Text>
-      <Text variant="md">{data.body} </Text>
+    <View className="flex-1">
+      <View>
+        <Image
+          className="h-44 w-full  rounded-xl"
+          contentFit="contain"
+          source={{
+            uri: data.img, //'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+          }}
+        />
+      </View>
+      <View className="px-6 pt-4">
+        <Text variant="h3">{data.name}</Text>
+        <Text variant="md" className="pt-2">
+          USD {data.price}
+        </Text>
+      </View>
     </View>
   );
 };
