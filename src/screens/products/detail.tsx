@@ -18,6 +18,7 @@ export const Details = () => {
       </View>
     );
   }
+
   if (isError) {
     return (
       <View className="flex-1  justify-center">
