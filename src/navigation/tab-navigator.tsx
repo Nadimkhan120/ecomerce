@@ -6,14 +6,13 @@ import type { ComponentType } from 'react';
 import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 
-import { Settings, Style, Products } from '@/screens';
+import { Basket, Products, Settings } from '@/screens';
 import {
+  Basket as BasketIcon,
   colors,
   Products as ProductsIcon,
   Settings as SettingsIcon,
-  Basket as BasketIcon,
 } from '@/ui';
-
 
 type TabParamList = {
   Basket: undefined;
@@ -52,7 +51,7 @@ const tabs: TabType[] = [
   },
   {
     name: 'Basket',
-    component: Style,
+    component: Basket,
     label: 'Basket',
   },
   {

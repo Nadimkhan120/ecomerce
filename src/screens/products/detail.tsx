@@ -1,15 +1,31 @@
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as React from 'react';
 
+import type { Cart } from '@/api';
 import { useProduct } from '@/api';
 import type { RouteProp } from '@/navigation/types';
-import { ActivityIndicator, Image, Text, View } from '@/ui';
+import { addProductToCart } from '@/store/cart';
+import { ActivityIndicator, Button, Image, Text, View } from '@/ui';
 
 export const Details = () => {
   const { params } = useRoute<RouteProp<'Details'>>();
+
+  const { goBack } = useNavigation();
+
   const { data, isLoading, isError } = useProduct({
     variables: { id: params.id },
   });
+
+  const addProductToBasket = () => {
+    // @ts-ignore
+    let cartItem: Cart = {
+      ...data,
+      quantity: 1,
+    };
+
+    addProductToCart(cartItem);
+    goBack();
+  };
 
   if (isLoading) {
     return (
@@ -36,7 +52,7 @@ export const Details = () => {
           className="h-44 w-full  rounded-xl"
           contentFit="contain"
           source={{
-            uri: data.img, //'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+            uri: data.img,
           }}
         />
       </View>
@@ -45,6 +61,14 @@ export const Details = () => {
         <Text variant="md" className="pt-2">
           USD {data.price}
         </Text>
+      </View>
+
+      <View className="flex-1 justify-end px-6 pb-11 align-bottom">
+        <Button
+          variant="secondary"
+          label="Add To Cart"
+          onPress={addProductToBasket}
+        />
       </View>
     </View>
   );

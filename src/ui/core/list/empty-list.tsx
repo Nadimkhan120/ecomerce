@@ -5,7 +5,7 @@ import { NoData } from '../../icons';
 import { Text } from '../text';
 import { View } from '../view';
 type Props = {
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 export const EmptyList = React.memo(({ isLoading }: Props) => {
   return (

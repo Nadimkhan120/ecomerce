@@ -12,8 +12,6 @@ export const Products = () => {
   const { data, isLoading, isError } = useProducts();
   const { navigate } = useNavigation();
 
-  console.log('data', JSON.stringify(data, null, 2));
-
   const renderItem = React.useCallback(
     ({ item }: { item: Product }) => (
       <Card {...item} onPress={() => navigate('Details', { id: item.id })} />
@@ -28,6 +26,7 @@ export const Products = () => {
       </View>
     );
   }
+
   return (
     <View className="flex-1 ">
       <FlashList
