@@ -1,4 +1,4 @@
-package com.ecomerce;
+package com.ecomerce.development;
 
 import android.os.Build;
 import android.os.Bundle;

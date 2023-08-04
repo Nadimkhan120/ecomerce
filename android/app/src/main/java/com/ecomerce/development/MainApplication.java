@@ -1,4 +1,4 @@
-package com.ecomerce;
+package com.ecomerce.development;
 
 import android.app.Application;
 import android.content.res.Configuration;

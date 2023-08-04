@@ -26,7 +26,7 @@ export const CartItem = ({ name, price, img, id, quantity, colour }: Props) => {
   };
 
   const decreaseQuantity = () => {
-    if (quantity === 0) return;
+    if (quantity === 1) return;
     decreaseCartQuantity(data);
   };
 
@@ -36,7 +36,7 @@ export const CartItem = ({ name, price, img, id, quantity, colour }: Props) => {
   };
 
   return (
-    <View className="block flex-row  overflow-hidden  rounded-xl bg-neutral-200 p-2 shadow-xl dark:bg-charcoal-900">
+    <View className="mt-2 block  flex-row  overflow-hidden rounded-xl bg-neutral-200 p-2 shadow-xl dark:bg-charcoal-900">
       <View>
         <Image
           className="h-44 w-28  rounded-xl"
