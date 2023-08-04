@@ -24,7 +24,7 @@ export const Basket = () => {
   );
 
   return (
-    <View className="flex-1 ">
+    <View className="flex-1  px-6 pt-10">
       <FlashList
         data={cart}
         renderItem={renderItem}

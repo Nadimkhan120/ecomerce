@@ -59,7 +59,7 @@ const _useCart = create<CartState>()(
           if (element?.id === data.id) {
             return {
               ...element,
-              productQuantity: element.quantity + 1,
+              quantity: element.quantity + 1,
             };
           }
           return element;
@@ -72,7 +72,7 @@ const _useCart = create<CartState>()(
           if (element?.id === data.id) {
             return {
               ...element,
-              productQuantity: element.quantity - 1,
+              quantity: element.quantity - 1,
             };
           }
           return element;
