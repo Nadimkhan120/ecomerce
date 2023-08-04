@@ -1,4 +1,22 @@
+import { MMKV } from 'react-native-mmkv';
 import { create } from 'zustand';
+import type { StateStorage } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
+
+const storage = new MMKV();
+
+const zustandStorage: StateStorage = {
+  setItem: (name, value) => {
+    return storage.set(name, value);
+  },
+  getItem: (name) => {
+    const value = storage.getString(name);
+    return value ?? null;
+  },
+  removeItem: (name) => {
+    return storage.delete(name);
+  },
+};
 
 import type { Cart } from '@/api';
 
@@ -12,54 +30,62 @@ interface CartState {
   decreaseCartQuantity: (data: Cart) => void;
 }
 
-const _useCart = create<CartState>((set, get) => ({
-  cart: [],
-  addProductToCart: (data: Cart) => {
-    let existingCartItem = [...get().cart];
+const _useCart = create<CartState>()(
+  persist(
+    (set, get) => ({
+      cart: [],
+      addProductToCart: (data: Cart) => {
+        let cartItems = [...get().cart];
 
-    let checkIfItemAlreadyExists = existingCartItem?.findIndex(
-      (element) => element?.id === data?.id
-    );
-    if (checkIfItemAlreadyExists !== -1) {
-    } else {
-      existingCartItem.push(data);
+        let checkIfItemAlreadyExists = cartItems?.findIndex(
+          (element) => element?.id === data?.id
+        );
+        if (checkIfItemAlreadyExists !== -1) {
+        } else {
+          cartItems.push(data);
+        }
+
+        set({ cart: cartItems });
+      },
+      removeProductFromCart: (data: Cart) => {
+        let cartItems = get().cart.filter(
+          (element) => element?.id !== data?.id
+        );
+
+        set({ cart: cartItems });
+      },
+      increaseCartQuantity: (data: Cart) => {
+        let cartItems = get()?.cart?.map((element) => {
+          if (element?.id === data.id) {
+            return {
+              ...element,
+              productQuantity: element.quantity + 1,
+            };
+          }
+          return element;
+        });
+
+        set({ cart: cartItems });
+      },
+      decreaseCartQuantity: (data: Cart) => {
+        let cartItems = get()?.cart?.map((element) => {
+          if (element?.id === data.id) {
+            return {
+              ...element,
+              productQuantity: element.quantity - 1,
+            };
+          }
+          return element;
+        });
+        set({ cart: cartItems });
+      },
+    }),
+    {
+      name: 'cart-storage', // name of item in the storage (must be unique)
+      storage: createJSONStorage(() => zustandStorage), // (optional) by default the 'localStorage' is used
     }
-
-    set({ cart: existingCartItem });
-  },
-  removeProductFromCart: (data: Cart) => {
-    let filteredCartItems = get().cart.filter(
-      (element) => element?.id !== data?.id
-    );
-
-    set({ cart: filteredCartItems });
-  },
-  increaseCartQuantity: (data: Cart) => {
-    let existingCartItem = get()?.cart?.map((element) => {
-      if (element?.id === data.id) {
-        return {
-          ...element,
-          productQuantity: element.quantity + 1,
-        };
-      }
-      return element;
-    });
-
-    set({ cart: existingCartItem });
-  },
-  decreaseCartQuantity: (data: Cart) => {
-    let cartItems = get()?.cart?.map((element) => {
-      if (element?.id === data.id) {
-        return {
-          ...element,
-          productQuantity: element.quantity - 1,
-        };
-      }
-      return element;
-    });
-    set({ cart: cartItems });
-  },
-}));
+  )
+);
 
 export const useCart = createSelectors(_useCart);
 
