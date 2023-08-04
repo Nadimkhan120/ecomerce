@@ -63,11 +63,18 @@ const _useCart = create<CartState>((set, get) => ({
 
 export const useCart = createSelectors(_useCart);
 
-export const addProductToCart = (data: Cart) =>
-  _useCart.getState().addProductToCart(data);
-export const removeProductFromCart = (data: Cart) =>
-  _useCart.getState().removeProductFromCart(data);
-export const increaseCartQuantity = (data: Cart) =>
-  _useCart.getState().increaseCartQuantity(data);
-export const decreaseCartQuantity = (data: Cart) =>
-  _useCart.getState().decreaseCartQuantity(data);
+export const addProductToCart = (data: Cart) => {
+  return _useCart.getState().addProductToCart(data);
+};
+
+export const removeProductFromCart = (data: Cart) => {
+  return _useCart.getState().removeProductFromCart(data);
+};
+
+export const increaseCartQuantity = (data: Cart) => {
+  return _useCart.getState().increaseCartQuantity(data);
+};
+
+export const decreaseCartQuantity = (data: Cart) => {
+  return _useCart.getState().decreaseCartQuantity(data);
+};
