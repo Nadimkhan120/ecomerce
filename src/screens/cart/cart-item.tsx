@@ -12,39 +12,25 @@ import { Image, Pressable, showErrorMessage, Text, View } from '@/ui';
 type Props = Cart & { onPress?: () => void };
 
 export const CartItem = ({ name, price, img, id, quantity, colour }: Props) => {
+  let data = {
+    name,
+    price,
+    img,
+    id,
+    quantity,
+    colour,
+  };
+
   const increaseQuantity = () => {
-    let data = {
-      name,
-      price,
-      img,
-      id,
-      quantity,
-      colour,
-    };
     increaseCartQuantity(data);
   };
 
   const decreaseQuantity = () => {
-    let data = {
-      name,
-      price,
-      img,
-      id,
-      quantity,
-      colour,
-    };
+    if (quantity === 0) return;
     decreaseCartQuantity(data);
   };
 
   const deleteCartItem = () => {
-    let data = {
-      name,
-      price,
-      img,
-      id,
-      quantity,
-      colour,
-    };
     removeProductFromCart(data);
     showErrorMessage('Cart item deleted.');
   };
